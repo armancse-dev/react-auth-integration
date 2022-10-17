@@ -7,7 +7,7 @@ const Register = () => {
          <form action="">
             <input type="email" />
             <br/>
-            <input type="password" />
+            <input type="password" /><br/>
             <input type="submit" value="Submit" />
          </form>
          <Link to="/login">Already Registered?</Link>
