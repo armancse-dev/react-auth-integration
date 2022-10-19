@@ -4,13 +4,14 @@ import useFirebse from '../../hooks/useFirebase';
 import './Header.css'
 
 const Header = () => {
-   const {user} = useFirebse();
+   const {user, logout} = useFirebse();
    return (
       <div className='header'>
          <Link to="/home">Home</Link>
          <Link to="/register">Register</Link>
          <Link to="/login">Login</Link>
-         {user?.email && <button>Logout</button>}
+         <span>{user.displayName} </span>
+         {user?.email && <button onClick={logout}>Logout</button>}
       </div>
    );
 };
