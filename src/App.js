@@ -1,6 +1,6 @@
 import './App.css';
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route,Switch } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Login from './components/Login/Login';
@@ -8,27 +8,48 @@ import Register from './components/Register/Register';
 import AuthProvider from './context/AuthProvider';
 import Shipping from './components/Shipping/Shipping';
 
+import PlaceOrder from './components/PlaceOrder/PlaceOrder';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+
+
+
 
 
 
 
 function App() {
+  
   return (
     <div className="App">
         
      <AuthProvider>
-        <Router>
+        <BrowserRouter>
           <Header></Header>
-          <Routes>
-            <Route exact path="/" element={<Home />} ></Route>
-            <Route exact path="/home" element={<Home />} ></Route>
-            <Route exact path="/login" element={<Login />} ></Route>
-            <Route exact path="/register" element={<Register />} ></Route>
+          <Switch>
+            <Route exact path="/">
+              <Home></Home>
+            </Route>
+            <Route path="/home">
+              <Home></Home>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+            <Route path="/register">
+              <Register></Register>
+            </Route>
 
-            <Route exact path="/shipping" element={<Shipping/>} ></Route>
+            <PrivateRoute path="/shipping">
+              <Shipping></Shipping>
+            </PrivateRoute>
+
+            <PrivateRoute path="/placeorder" 
+            >
+              <PlaceOrder></PlaceOrder>
+            </PrivateRoute>
             
-          </Routes>
-        </Router>
+          </Switch>
+        </BrowserRouter>
      </AuthProvider>
      
 
